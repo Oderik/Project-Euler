@@ -3,14 +3,23 @@ __author__ = 'maik.riechel'
 import math
 
 
+def is_divisible(n, candidates):
+    half_n = n / 2
+    for x in candidates:
+        if x > half_n:
+            print(x, half_n, n)
+            return True
+        if n % x == 0:
+            return False
+    return True
+
+
 def is_prime(n):
     if n < SMALLEST_PRIME:
         return False
     half = math.ceil(n / SMALLEST_PRIME)
-    for x in range(SMALLEST_PRIME, half + 1):
-        if n % x == 0:
-            return False
-    return True
+    candidates = range(SMALLEST_PRIME, half + 1)
+    return is_divisible(n, candidates)
 
 
 def next_prime(p):
