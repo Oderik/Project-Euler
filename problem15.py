@@ -1,22 +1,16 @@
 __author__ = 'maik.riechel'
 
-def triangular(n):
-    return n * (n + 1) / 2
-
-def latize_paths(grid_size):
-    if grid_size == 1:
-        return 2
-    smaller_grid = grid_size - 1
-    return (latize_paths(smaller_grid) + smaller_grid) * 2
-
-result = 0
-
-def latize(width, height):
+def faculty(n):
     result = 1
-    slots = (width + height)
-    for n in range(width + height, width, -1):
-        result *= n
-        print(n, result)
+    for i in range(1, n+1):
+        result *= i
     return result
 
-print(latize(2, 2))
+
+def binomial_coefficient(n, k):
+    return faculty(n) / (faculty(k) * faculty(n-k))
+
+def latize(width, height):
+    return binomial_coefficient(width + height, width)
+
+print(latize(20, 20))
